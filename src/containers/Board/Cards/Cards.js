@@ -9,7 +9,6 @@ import { CARD_WIDTH, CARD_MARGIN, OFFSET_WIDTH } from '../../../constants.js';
 const FIRST_CARD_LEFT = 31
 function getPlaceholderIndex(x, scrollLeftTip) {
   // shift placeholder if x position more than card width / 2
-  // console.log("---", x, scrollLeftTip)
   const xPos = x + scrollLeftTip - FIRST_CARD_LEFT;
   let placeholderIndex;
   if (xPos < CARD_WIDTH / 2) {
@@ -48,7 +47,6 @@ const specs = {
       findDOMNode(component).scrollLeft
    );
 
-    // console.log("hover!")
     // vertical scroll
     if (!props.isScrolling) {
       if (window.innerHeight - monitor.getClientOffset().y < 200) {

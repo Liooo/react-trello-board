@@ -45,8 +45,6 @@ export default class Board extends Component {
 
   componentWillMount() {
     this.props.getLists(10);
-    // window.onscroll = (e)=>{console.log(e)}
-    // window.onmousemove = (e)=>{console.log(e.clientX)}
   }
 
   startScrolling(direction) {
@@ -72,7 +70,6 @@ export default class Board extends Component {
 
   scrollTop() {
     function scroll() {
-      console.log("top", document.getElementsByTagName('body')[0].scrollTop)
       document.getElementsByTagName('body')[0].scrollTop -= 10;
     }
     this.scrollInterval = setInterval(scroll, 10);
@@ -80,7 +77,6 @@ export default class Board extends Component {
 
   scrollBottom() {
     function scroll() {
-      console.log("bottom", document.getElementsByTagName('body')[0].scrollTop)
       document.getElementsByTagName('body')[0].scrollTop += 10;
     }
     this.scrollInterval = setInterval(scroll, 10);
