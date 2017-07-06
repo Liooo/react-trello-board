@@ -50,9 +50,9 @@ const specs = {
     // vertical scroll
     if (!props.isScrolling) {
       if (window.innerHeight - monitor.getClientOffset().y < 200) {
-        // props.startScrolling('toBottom');
+        props.startScrolling('toBottom');
       } else if (monitor.getClientOffset().y < 200) {
-        // props.startScrolling('toTop');
+        props.startScrolling('toTop');
       }
     } else {
       if (window.innerHeight - monitor.getClientOffset().y > 200 &&
