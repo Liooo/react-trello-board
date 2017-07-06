@@ -73,7 +73,7 @@ export default class CardsContainer extends Component {
         {/*</div>*/}
         <Cards
           moveCard={moveCard}
-          x={listIndex}
+          listIndex={listIndex}
           cards={item.cards}
           startScrolling={this.props.startScrolling}
           stopScrolling={this.props.stopScrolling}

@@ -24,20 +24,20 @@ const specs = {
     const { placeholderIndex } = component.state;
     const lastX = monitor.getItem().x;
     const lastY = monitor.getItem().y;
-    const nextX = props.x;
+    const nextListIndex = props.listIndex;
     let nextY = placeholderIndex;
 
     if (lastY > nextY) { // move top
       nextY += 1;
-    } else if (lastX !== nextX) { // insert into another list
+    } else if (lastX !== nextListIndex) { // insert into another list
       nextY += 1;
     }
 
-    if (lastX === nextX && lastY === nextY) { // if position equel
+    if (lastX === nextListIndex && lastY === nextY) { // if position equel
       return;
     }
 
-    props.moveCard(lastX, lastY, nextX, nextY);
+    props.moveCard(lastX, lastY, nextListIndex, nextY);
   },
   hover(props, monitor, component) {
     // defines where placeholder is rendered
@@ -87,7 +87,7 @@ export default class Cards extends Component {
     connectDropTarget: PropTypes.func.isRequired,
     moveCard: PropTypes.func.isRequired,
     cards: PropTypes.array.isRequired,
-    x: PropTypes.number.isRequired,
+    listIndex: PropTypes.number.isRequired,
     isOver: PropTypes.bool,
     item: PropTypes.object,
     canDrop: PropTypes.bool,
@@ -105,7 +105,7 @@ export default class Cards extends Component {
   }
 
   render() {
-    const { connectDropTarget, x, cards, isOver, canDrop } = this.props;
+    const { connectDropTarget, listIndex, cards, isOver, canDrop } = this.props;
     const { placeholderIndex } = this.state;
 
     let isPlaceHold = false;
@@ -121,7 +121,7 @@ export default class Cards extends Component {
       }
       if (item !== undefined) {
         cardList.push(
-          <Card x={x} y={i}
+          <Card x={listIndex} y={i}
             item={item}
             key={item.id}
             stopScrolling={this.props.stopScrolling}
