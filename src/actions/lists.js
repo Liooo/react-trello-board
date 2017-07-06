@@ -46,15 +46,15 @@ export function getLists(quantity) {
   };
 }
 
-export function moveList(lastX, nextX) {
+export function moveList(lastListIndex, nextListIndex) {
   return (dispatch) => {
-    dispatch({ type: MOVE_LIST, lastX, nextX });
+    dispatch({ type: MOVE_LIST, lastListIndex, nextListIndex });
   };
 }
 
-export function moveCard(lastX, lastY, nextX, nextY) {
+export function moveCard(lastListIndex, lastCardIndex, nextListIndex, nextCardIndex) {
   return (dispatch) => {
-    dispatch({ type: MOVE_CARD, lastX, lastY, nextX, nextY });
+    dispatch({ type: MOVE_CARD, lastListIndex, lastCardIndex, nextListIndex, nextCardIndex });
   };
 }
 

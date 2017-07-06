@@ -104,13 +104,13 @@ export default class Board extends Component {
     this.setState({ isScrolling: false }, clearInterval(this.scrollInterval));
   }
 
-  moveCard(lastX, lastY, nextX, nextY) {
-    this.props.moveCard(lastX, lastY, nextX, nextY);
+  moveCard(lastListIndex, lastCardIndex, nextListIndex, nextCardIndex) {
+    this.props.moveCard(lastListIndex, lastCardIndex, nextListIndex, nextCardIndex);
   }
 
-  moveList(listId, nextX) {
-    const { lastX } = this.findList(listId);
-    this.props.moveList(lastX, nextX);
+  moveList(listId, nextListIndex) {
+    const { lastListIndex } = this.findList(listId);
+    this.props.moveList(lastListIndex, nextListIndex);
   }
 
   findList(id) {
@@ -119,7 +119,7 @@ export default class Board extends Component {
 
     return {
       list,
-      lastX: lists.indexOf(list)
+      lastListIndex: lists.indexOf(list)
     };
   }
 
