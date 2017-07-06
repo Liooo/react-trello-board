@@ -3,17 +3,17 @@ import { DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
 
 import Card from './DraggableCard';
-import { CARD_HEIGHT, CARD_MARGIN, OFFSET_HEIGHT } from '../../../constants.js';
+import { CARD_WIDTH, CARD_MARGIN, OFFSET_WIDTH } from '../../../constants.js';
 
 
-function getPlaceholderIndex(y, scrollY) {
-  // shift placeholder if y position more than card height / 2
-  const yPos = y - OFFSET_HEIGHT + scrollY;
+function getPlaceholderIndex(x, scrollX) {
+  // shift placeholder if x position more than card width / 2
+  const xPos = x + scrollX;
   let placeholderIndex;
-  if (yPos < CARD_HEIGHT / 2) {
+  if (xPos < CARD_WIDTH / 2) {
     placeholderIndex = -1; // place at the start
   } else {
-    placeholderIndex = Math.floor((yPos - CARD_HEIGHT / 2) / (CARD_HEIGHT + CARD_MARGIN));
+    placeholderIndex = Math.floor((xPos - CARD_WIDTH / 2) / (CARD_WIDTH + CARD_MARGIN));
   }
   return placeholderIndex;
 }
@@ -42,20 +42,20 @@ const specs = {
   hover(props, monitor, component) {
     // defines where placeholder is rendered
     const placeholderIndex = getPlaceholderIndex(
-      monitor.getClientOffset().y,
-      findDOMNode(component).scrollTop
+      monitor.getClientOffset().x,
+      findDOMNode(component).scrollLeft
     );
 
     // horizontal scroll
     if (!props.isScrolling) {
-      if (window.innerWidth - monitor.getClientOffset().x < 200) {
-        props.startScrolling('toRight');
-      } else if (monitor.getClientOffset().x < 200) {
-        props.startScrolling('toLeft');
+      if (window.innerHeight - monitor.getClientOffset().y < 200) {
+        // props.startScrolling('toBottom');
+      } else if (monitor.getClientOffset().y < 200) {
+        // props.startScrolling('toTop');
       }
     } else {
-      if (window.innerWidth - monitor.getClientOffset().x > 200 &&
-          monitor.getClientOffset().x > 200
+      if (window.innerHeight - monitor.getClientOffset().y > 200 &&
+          monitor.getClientOffset().y > 200
       ) {
         props.stopScrolling();
       }
@@ -68,7 +68,7 @@ const specs = {
     // on the component from here outside the component.
     // https://github.com/gaearon/react-dnd/issues/179
     component.setState({ placeholderIndex });
-
+    
     // when drag begins, we hide the card and only display cardDragPreview
     const item = monitor.getItem();
     document.getElementById(item.id).style.display = 'none';

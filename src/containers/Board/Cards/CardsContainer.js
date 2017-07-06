@@ -21,14 +21,14 @@ const listTarget = {
   },
   hover(props, monitor) {
     if (!props.isScrolling) {
-      if (window.innerWidth - monitor.getClientOffset().x < 200) {
-        props.startScrolling('toRight');
-      } else if (monitor.getClientOffset().x < 200) {
-        props.startScrolling('toLeft');
+      if (window.innerHeight - monitor.getClientOffset().y < 200) {
+        props.startScrolling('toBottom');
+      } else if (monitor.getClientOffset().y < 200) {
+        props.startScrolling('toTop');
       }
     } else {
-      if (window.innerWidth - monitor.getClientOffset().x > 200 &&
-          monitor.getClientOffset().x > 200
+      if (window.innerHeight - monitor.getClientOffset().y > 200 &&
+          monitor.getClientOffset().y > 200
       ) {
         props.stopScrolling();
       }

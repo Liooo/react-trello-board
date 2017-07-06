@@ -36,6 +36,8 @@ export default class Board extends Component {
     this.findList = this.findList.bind(this);
     this.scrollRight = this.scrollRight.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
+    this.scrollTop = this.scrollTop.bind(this);
+    this.scrollBottom = this.scrollBottom.bind(this);
     this.stopScrolling = this.stopScrolling.bind(this);
     this.startScrolling = this.startScrolling.bind(this);
     this.state = { isScrolling: false };
@@ -43,6 +45,7 @@ export default class Board extends Component {
 
   componentWillMount() {
     this.props.getLists(10);
+    window.onscroll = (e)=>{console.log(e)}
   }
 
   startScrolling(direction) {
@@ -54,10 +57,32 @@ export default class Board extends Component {
       case 'toRight':
         this.setState({ isScrolling: true }, this.scrollRight());
         break;
+      case 'toBottom':
+        this.setState({ isScrolling: true }, this.scrollBottom());
+        break;
+      case 'toTop':
+        this.setState({ isScrolling: true }, this.scrollTop());
+        break;
       default:
         break;
     }
     // }
+  }
+
+  scrollTop() {
+    function scroll() {
+      console.log("top", document.getElementsByTagName('body')[0].scrollTop)
+      document.getElementsByTagName('body')[0].scrollTop -= 10;
+    }
+    this.scrollInterval = setInterval(scroll, 10);
+  }
+
+  scrollBottom() {
+    function scroll() {
+      console.log("bottom", document.getElementsByTagName('body')[0].scrollTop)
+      document.getElementsByTagName('body')[0].scrollTop += 10;
+    }
+    this.scrollInterval = setInterval(scroll, 10);
   }
 
   scrollRight() {
