@@ -24,38 +24,38 @@ const Card = (props) => {
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, banditos.</p>
         </div>
       </div>
-      {/*<div className="item-perfomers">*/}
-        {/*<div className="add-perfomers">*/}
-          {/*<a href="#"><img src={galPng} alt="Add perfomers" /></a>*/}
-          {/*<div className="perfomer">*/}
-            {/*<img*/}
-              {/*src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 1}.jpg`}*/}
-              {/*alt="Perfomer"*/}
-            {/*/>*/}
-          {/*</div>*/}
-          {/*<div className="perfomer">*/}
-            {/*<img*/}
-              {/*src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 2}.jpg`}*/}
-              {/*alt="Perfomer"*/}
-            {/*/>*/}
-          {/*</div>*/}
-          {/*<div className="perfomer">*/}
-            {/*<img*/}
-              {/*src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 3}.jpg`}*/}
-              {/*alt="Perfomer"*/}
-            {/*/>*/}
-          {/*</div>*/}
-        {/*</div>*/}
-        {/*<div className="delete-perfomers">*/}
-          {/*<a href="#"><img src={delPng} alt="Delete perfomers" /></a>*/}
-          {/*<div className="perfomer">*/}
-            {/*<img*/}
-              {/*src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 4}.jpg`}*/}
-              {/*alt="Perfomer"*/}
-            {/*/>*/}
-          {/*</div>*/}
-        {/*</div>*/}
-      {/*</div>*/}
+      <div className="item-perfomers">
+        <div className="add-perfomers">
+          <a href="#"><img src={galPng} alt="Add perfomers" /></a>
+          <div className="perfomer">
+            <img
+              src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 1}.jpg`}
+              alt="Perfomer"
+            />
+          </div>
+          <div className="perfomer">
+            <img
+              src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 2}.jpg`}
+              alt="Perfomer"
+            />
+          </div>
+          <div className="perfomer">
+            <img
+              src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 3}.jpg`}
+              alt="Perfomer"
+            />
+          </div>
+        </div>
+        <div className="delete-perfomers">
+          <a href="#"><img src={delPng} alt="Delete perfomers" /></a>
+          <div className="perfomer">
+            <img
+              src={`https://randomuser.me/api/portraits/thumb/men/${item.id + 4}.jpg`}
+              alt="Perfomer"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
