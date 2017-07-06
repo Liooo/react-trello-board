@@ -6,9 +6,11 @@ import Card from './DraggableCard';
 import { CARD_WIDTH, CARD_MARGIN, OFFSET_WIDTH } from '../../../constants.js';
 
 
-function getPlaceholderIndex(x, scrollX) {
+const FIRST_CARD_LEFT = 31
+function getPlaceholderIndex(x, scrollLeftTip) {
   // shift placeholder if x position more than card width / 2
-  const xPos = x + scrollX;
+  // console.log("---", x, scrollLeftTip)
+  const xPos = x + scrollLeftTip - FIRST_CARD_LEFT;
   let placeholderIndex;
   if (xPos < CARD_WIDTH / 2) {
     placeholderIndex = -1; // place at the start
@@ -26,7 +28,8 @@ const specs = {
     const lastCardIndex = monitor.getItem().cardIndex;
     const nextListIndex = props.listIndex;
     let nextCardIndex = placeholderIndex;
-
+    console.log('list from', lastListIndex, 'to', nextListIndex)
+    console.log('card from', lastCardIndex, 'to', nextCardIndex)
     if (lastCardIndex > nextCardIndex) { // move top
       nextCardIndex += 1;
     } else if (lastListIndex !== nextListIndex) { // insert into another list
@@ -41,12 +44,14 @@ const specs = {
   },
   hover(props, monitor, component) {
     // defines where placeholder is rendered
+    let dom = findDOMNode(component)
     const placeholderIndex = getPlaceholderIndex(
       monitor.getClientOffset().x,
       findDOMNode(component).scrollLeft
-    );
+   );
 
-    // horizontal scroll
+    // console.log("hover!")
+    // vertical scroll
     if (!props.isScrolling) {
       if (window.innerHeight - monitor.getClientOffset().y < 200) {
         // props.startScrolling('toBottom');
@@ -110,11 +115,12 @@ export default class Cards extends Component {
 
     let isPlaceHold = false;
     let cardList = [];
+    let placeHolder = <div key="placeholder" className="item placeholder">placeholder!</div>
     cards.forEach((item, i) => {
       if (isOver && canDrop) {
         isPlaceHold = false;
         if (i === 0 && placeholderIndex === -1) {
-          cardList.push(<div key="placeholder" className="item placeholder" />);
+          cardList.push(placeHolder);
         } else if (placeholderIndex > i) {
           isPlaceHold = true;
         }
@@ -129,18 +135,18 @@ export default class Cards extends Component {
         );
       }
       if (isOver && canDrop && placeholderIndex === i) {
-        cardList.push(<div key="placeholder" className="item placeholder" />);
+        cardList.push(placeHolder);
       }
     });
 
     // if placeholder index is greater than array.length, display placeholder as last
     if (isPlaceHold) {
-      cardList.push(<div key="placeholder" className="item placeholder" />);
+      cardList.push(placeHolder);
     }
 
     // if there is no items in cards currently, display a placeholder anyway
     if (isOver && canDrop && cards.length === 0) {
-      cardList.push(<div key="placeholder" className="item placeholder" />);
+      cardList.push(placeHolder);
     }
 
     return connectDropTarget(

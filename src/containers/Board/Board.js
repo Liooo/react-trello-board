@@ -45,7 +45,8 @@ export default class Board extends Component {
 
   componentWillMount() {
     this.props.getLists(10);
-    window.onscroll = (e)=>{console.log(e)}
+    // window.onscroll = (e)=>{console.log(e)}
+    // window.onmousemove = (e)=>{console.log(e.clientX)}
   }
 
   startScrolling(direction) {
