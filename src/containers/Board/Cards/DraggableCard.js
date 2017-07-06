@@ -77,7 +77,7 @@ export default class CardComponent extends Component {
     const { isDragging, connectDragSource, item } = this.props;
 
     return connectDragSource(
-      <div>
+      <div className="draggable-card">
         <Card style={getStyles(isDragging)} item={item} />
       </div>
     );
