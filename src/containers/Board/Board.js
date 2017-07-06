@@ -138,7 +138,7 @@ export default class Board extends Component {
             startScrolling={this.startScrolling}
             stopScrolling={this.stopScrolling}
             isScrolling={this.state.isScrolling}
-            x={i}
+            listIndex={i}
           />
         )}
       </div>

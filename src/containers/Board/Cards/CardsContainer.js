@@ -7,7 +7,7 @@ const listSource = {
   beginDrag(props) {
     return {
       id: props.id,
-      x: props.x
+      listIndex: props.listIndex
     };
   },
   endDrag(props) {
@@ -34,9 +34,9 @@ const listTarget = {
       }
     }
     const { id: listId } = monitor.getItem();
-    const { id: nextX } = props;
-    if (listId !== nextX) {
-      props.moveList(listId, props.x);
+    const { id: nextListId } = props;
+    if (listId !== nextListId) {
+      props.moveList(listId, props.listIndex);
     }
   }
 };
@@ -53,7 +53,7 @@ export default class CardsContainer extends Component {
     connectDropTarget: PropTypes.func.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     item: PropTypes.object,
-    x: PropTypes.number,
+    listIndex: PropTypes.number,
     moveCard: PropTypes.func.isRequired,
     moveList: PropTypes.func.isRequired,
     isDragging: PropTypes.bool,
@@ -63,7 +63,7 @@ export default class CardsContainer extends Component {
   }
 
   render() {
-    const { connectDropTarget, connectDragSource, item, x, moveCard, isDragging } = this.props;
+    const { connectDropTarget, connectDragSource, item, listIndex, moveCard, isDragging } = this.props;
     const opacity = isDragging ? 0.5 : 1;
 
     return connectDragSource(connectDropTarget(
@@ -73,7 +73,7 @@ export default class CardsContainer extends Component {
         {/*</div>*/}
         <Cards
           moveCard={moveCard}
-          x={x}
+          x={listIndex}
           cards={item.cards}
           startScrolling={this.props.startScrolling}
           stopScrolling={this.props.stopScrolling}
