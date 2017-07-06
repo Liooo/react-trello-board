@@ -37,7 +37,7 @@ const OPTIONS = {
     let isEqual = true;
     if (props.item.id === otherProps.item.id &&
         props.listIndex === otherProps.listIndex &&
-        props.y === otherProps.y
+        props.cardIndex === otherProps.cardIndex
        ) {
       isEqual = true;
     } else {
