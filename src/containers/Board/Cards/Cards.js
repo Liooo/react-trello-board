@@ -22,22 +22,22 @@ const specs = {
   drop(props, monitor, component) {
     document.getElementById(monitor.getItem().id).style.display = 'block';
     const { placeholderIndex } = component.state;
-    const lastX = monitor.getItem().x;
-    const lastY = monitor.getItem().y;
+    const lastListIndex = monitor.getItem().listIndex;
+    const lastCardIndex = monitor.getItem().cardIndex;
     const nextListIndex = props.listIndex;
-    let nextY = placeholderIndex;
+    let nextCardIndex = placeholderIndex;
 
-    if (lastY > nextY) { // move top
-      nextY += 1;
-    } else if (lastX !== nextListIndex) { // insert into another list
-      nextY += 1;
+    if (lastCardIndex > nextCardIndex) { // move top
+      nextCardIndex += 1;
+    } else if (lastListIndex !== nextListIndex) { // insert into another list
+      nextCardIndex += 1;
     }
 
-    if (lastX === nextListIndex && lastY === nextY) { // if position equel
+    if (lastListIndex === nextListIndex && lastCardIndex === nextCardIndex) { // if position equel
       return;
     }
 
-    props.moveCard(lastX, lastY, nextListIndex, nextY);
+    props.moveCard(lastListIndex, lastCardIndex, nextListIndex, nextCardIndex);
   },
   hover(props, monitor, component) {
     // defines where placeholder is rendered
@@ -121,7 +121,7 @@ export default class Cards extends Component {
       }
       if (item !== undefined) {
         cardList.push(
-          <Card listIndex={listIndex} y={i}
+          <Card listIndex={listIndex} cardIndex={i}
             item={item}
             key={item.id}
             stopScrolling={this.props.stopScrolling}
