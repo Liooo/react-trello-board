@@ -121,7 +121,7 @@ export default class Cards extends Component {
       }
       if (item !== undefined) {
         cardList.push(
-          <Card x={listIndex} y={i}
+          <Card listIndex={listIndex} y={i}
             item={item}
             key={item.id}
             stopScrolling={this.props.stopScrolling}

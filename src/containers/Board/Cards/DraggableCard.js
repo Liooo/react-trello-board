@@ -15,11 +15,11 @@ function getStyles(isDragging) {
 const cardSource = {
   beginDrag(props, monitor, component) {
     // dispatch to redux store that drag is started
-    const { item, x, y } = props;
+    const { item, listIndex, y } = props;
     const { id, title } = item;
     const { clientWidth, clientHeight } = findDOMNode(component);
 
-    return { id, title, item, x, y, clientWidth, clientHeight };
+    return { id, title, item, listIndex, y, clientWidth, clientHeight };
   },
   endDrag(props, monitor) {
     document.getElementById(monitor.getItem().id).style.display = 'block';
@@ -36,7 +36,7 @@ const OPTIONS = {
   arePropsEqual: function arePropsEqual(props, otherProps) {
     let isEqual = true;
     if (props.item.id === otherProps.item.id &&
-        props.x === otherProps.x &&
+        props.listIndex === otherProps.listIndex &&
         props.y === otherProps.y
        ) {
       isEqual = true;
@@ -62,7 +62,7 @@ export default class CardComponent extends Component {
     connectDragSource: PropTypes.func.isRequired,
     connectDragPreview: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
-    x: PropTypes.number.isRequired,
+    listIndex: PropTypes.number.isRequired,
     y: PropTypes.number,
     stopScrolling: PropTypes.func
   }
