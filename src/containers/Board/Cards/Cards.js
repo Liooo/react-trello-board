@@ -28,8 +28,6 @@ const specs = {
     const lastCardIndex = monitor.getItem().cardIndex;
     const nextListIndex = props.listIndex;
     let nextCardIndex = placeholderIndex;
-    console.log('list from', lastListIndex, 'to', nextListIndex)
-    console.log('card from', lastCardIndex, 'to', nextCardIndex)
     if (lastCardIndex > nextCardIndex) { // move top
       nextCardIndex += 1;
     } else if (lastListIndex !== nextListIndex) { // insert into another list
