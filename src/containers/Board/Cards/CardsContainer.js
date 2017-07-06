@@ -68,9 +68,9 @@ export default class CardsContainer extends Component {
 
     return connectDragSource(connectDropTarget(
       <div className="desk" style={{ opacity }}>
-        <div className="desk-head">
-          <div className="desk-name">{item.name}</div>
-        </div>
+        {/*<div className="desk-head">*/}
+          {/*<div className="desk-name">{item.name}</div>*/}
+        {/*</div>*/}
         <Cards
           moveCard={moveCard}
           x={x}
