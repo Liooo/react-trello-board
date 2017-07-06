@@ -113,7 +113,7 @@ export default class Cards extends Component {
 
     let isPlaceHold = false;
     let cardList = [];
-    let placeHolder = <div key="placeholder" className="item placeholder">placeholder!</div>
+    let placeHolder = <div key="placeholder" className="item placeholder"></div>
     cards.forEach((item, i) => {
       if (isOver && canDrop) {
         isPlaceHold = false;
